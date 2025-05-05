@@ -1,0 +1,267 @@
+/* Enhanced CSS for Personal Website
+ * This CSS expands on the inline styles provided in the HTML template
+ * Copy this to an external style.css file for easier maintenance
+ */
+
+/* Import fonts - must be at the top */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --text-color: #333;
+    --bg-color: #fdf9ec;
+    --link-color: #555;
+    --link-hover-color: #000;
+    --section-spacing: 60px;
+    --fade-transition: all 0.2s ease;
+}
+
+/* Base styles and typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inconsolata", monospace; 
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    transition: var(--fade-transition);
+    font-weight: 400;
+}
+
+h1 {
+    font-family: "Inconsolata", monospace; 
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-family: "Inconsolata", monospace; 
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+p {
+    font-family: "Inconsolata", monospace;
+    font-style: normal;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+a {
+    font-family: "Inconsolata", monospace;
+    font-style: normal;
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--link-color);
+    transition: var(--fade-transition);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    border-bottom: 1px solid var(--link-hover-color);
+}
+
+/* Header & Navigation */
+header {
+    font-family: 'Sansation', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--section-spacing);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    border-bottom: none;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--link-hover-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Main content */
+.main-content {
+    max-width: 900px;
+}
+
+.bio-section {
+    margin-bottom: var(--section-spacing);
+}
+
+.bio-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.profile-image {
+    flex: 0 0 250px; /* Width of the image column */
+}
+
+.profile-image img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.bio-text {
+    flex: 1;
+}
+
+/* Responsive layout for mobile devices */
+@media (max-width: 768px) {
+    .bio-container {
+        flex-direction: column;
+    }
+    
+    .profile-image {
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.highlighted-text {
+    font-weight: 500;
+}
+
+/* Section styles */
+section {
+    margin-bottom: var(--section-spacing);
+}
+
+section[id] {
+    scroll-margin-top: 80px;
+}
+
+/* Project or work section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.project-card {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    transition: var(--fade-transition);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+}
+
+/* Footer & Social links */
+footer {
+    margin-top: 80px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.social-links a {
+    border-bottom: none;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+
+/* Dark mode */
+.dark-mode {
+    --text-color: #f5f5f5;
+    --bg-color: #222;
+    --link-color: #aaa;
+    --link-hover-color: #fff;
+}
+
+.dark-mode .project-card {
+    border-color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    nav ul {
+        margin-top: 20px;
+    }
+    
+    nav ul li {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        padding: 0;
+        color: black;
+        background-color: white;
+    }
+    
+    .social-links, 
+    .dark-mode-toggle {
+        display: none;
+    }
+    
+    a {
+        color: black;
+        text-decoration: underline;
+        border-bottom: none;
+    }
+}
